@@ -1,0 +1,86 @@
+/* =============================================
+   FRGREPUESTOS — PRODUCTS PAGE
+   ============================================= */
+
+.pageHero {
+  background: linear-gradient(135deg, var(--frg-navy) 0%, #072f46 100%);
+  padding: 4rem 0 3rem;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.pageHero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+.pageHeroInner {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ff9090;
+  margin-bottom: 0.9rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(238, 46, 46, .18);
+  border: 1px solid rgba(238, 46, 46, .3);
+  border-radius: 6px;
+}
+
+.pageTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 950;
+  letter-spacing: -0.045em;
+  margin: 0 0 0.9rem;
+  line-height: 1;
+}
+
+.pageSubtitle {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #c8dde3;
+  max-width: 580px;
+  margin: 0;
+}
+
+/* Grid de products */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  margin-top: 3rem;
+}
+
+@media (min-width: 480px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Separador carrusel */
+.carouselWrapper {
+  margin-top: 4rem;
+}
+
+.carouselTitle {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}

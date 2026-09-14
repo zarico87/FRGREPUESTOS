@@ -1,0 +1,96 @@
+/* =============================================
+   FRGREPUESTOS — CARRUSEL MARCAS INFINITO
+   ============================================= */
+
+.wrapper {
+  width: 100%;
+  overflow: hidden;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 0;
+  position: relative;
+}
+
+.wrapper::before,
+.wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--surface) 0%, transparent 100%);
+}
+
+.wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--surface) 0%, transparent 100%);
+}
+
+.heading {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  gap: 3rem;
+  animation: scroll 28s linear infinite;
+}
+
+.track:hover {
+  animation-play-state: paused;
+}
+
+.logoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 120px;
+  height: 60px;
+  filter: grayscale(1) opacity(0.55);
+  transition: filter 0.35s ease, transform 0.35s ease;
+}
+
+.logoItem:hover {
+  filter: grayscale(0) opacity(1);
+  transform: scale(1.08);
+}
+
+.logoItem img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 640px) {
+  .logoItem {
+    width: 90px;
+    height: 50px;
+  }
+  .track {
+    gap: 2rem;
+  }
+  .wrapper::before,
+  .wrapper::after {
+    width: 60px;
+  }
+}

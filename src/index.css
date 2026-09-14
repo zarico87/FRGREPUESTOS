@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #17313e;
+  background: #f8f8f8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  /* Brand palette */
+  --frg-navy: #053D5A;
+  --frg-red: #EE2E2E;
+  --frg-silver: #A2ABAA;
+  --frg-gray: #787D7B;
+  --frg-white: #F8F8F8;
+  /* Semantic tokens — light */
+  --bg: #f8f8f8;
+  --surface: #ffffff;
+  --surface-2: #edf1f1;
+  --surface-3: #e0e6e8;
+  --text: #17313e;
+  --text-strong: #0a1f28;
+  --muted: #66767b;
+  --border: rgba(5, 61, 90, .14);
+  --border-strong: rgba(5, 61, 90, .28);
+  --shadow: 0 18px 45px rgba(5, 61, 90, .10);
+  --shadow-xl: 0 28px 70px rgba(5, 61, 90, .16);
+  --radius: 12px;
+  --radius-lg: 18px;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0c171d;
+  --surface: #11232c;
+  --surface-2: #182d37;
+  --surface-3: #1e3540;
+  --text: #f2f6f6;
+  --text-strong: #ffffff;
+  --muted: #b2c0c3;
+  --border: rgba(162, 171, 170, .18);
+  --border-strong: rgba(162, 171, 170, .36);
+  --shadow: 0 18px 45px rgba(0, 0, 0, .28);
+  --shadow-xl: 0 28px 70px rgba(0, 0, 0, .42);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: var(--frg-red);
+  color: white;
+}
+
+@layer utilities {
+  .container-frg {
+    width: min(1180px, calc(100% - 2rem));
+    margin-inline: auto;
+  }
+
+  .section-pad {
+    padding-block: 5rem;
+  }
+
+  @media (max-width: 640px) {
+    .section-pad {
+      padding-block: 3rem;
+    }
+  }
+}
+
+/* Scroll bar premium */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--surface-2); }
+::-webkit-scrollbar-thumb { background: var(--frg-navy); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--frg-red); }
+
+/* Page fade-in */
+@keyframes pageFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter {
+  animation: pageFade .45s ease both;
+}

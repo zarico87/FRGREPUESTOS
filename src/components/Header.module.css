@@ -1,0 +1,151 @@
+/* =============================================
+   FRGREPUESTOS — HEADER PREMIUM
+   ============================================= */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background .3s ease, border-color .3s ease;
+}
+
+/* ── Logo ── */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  min-width: 160px;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.logoFallback {
+  display: none;
+  align-items: baseline;
+  gap: .42rem;
+  letter-spacing: -.04em;
+}
+
+.logoMain {
+  font-size: 1.85rem;
+  line-height: 1;
+  font-weight: 950;
+  color: var(--frg-red);
+}
+
+.logoSub {
+  font-size: .8rem;
+  line-height: 1;
+  font-weight: 850;
+  letter-spacing: .16em;
+  color: var(--frg-navy);
+}
+
+:global([data-theme="dark"]) .logoSub {
+  color: var(--frg-white);
+}
+
+/* ── Nav ── */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .2rem;
+}
+
+.navLink {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .92rem;
+  font-weight: 700;
+  padding: .62rem .85rem;
+  border-radius: 8px;
+  transition: color .2s ease, background .2s ease;
+  white-space: nowrap;
+}
+
+.navLink:hover,
+.active {
+  color: var(--frg-red);
+  background: color-mix(in srgb, var(--frg-red) 8%, transparent);
+}
+
+/* ── Icon buttons ── */
+.iconButton {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform .2s ease, border-color .2s ease, color .2s ease;
+  font-size: 1rem;
+}
+
+.iconButton:hover {
+  transform: translateY(-2px);
+  border-color: var(--frg-red);
+  color: var(--frg-red);
+}
+
+.mobileButton {
+  display: none;
+}
+
+/* ── Mobile ── */
+@media (max-width: 800px) {
+  .logo {
+    min-width: auto;
+  }
+
+  .logoImg {
+    height: 36px;
+  }
+
+  .nav {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    top: calc(100% + .55rem);
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: .7rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .navOpen {
+    display: flex;
+  }
+
+  .navLink {
+    padding: .85rem 1rem;
+    border-radius: 8px;
+  }
+
+  .mobileButton {
+    display: grid;
+  }
+}
+
+@media (max-width: 400px) {
+  .logoImg {
+    height: 30px;
+  }
+}

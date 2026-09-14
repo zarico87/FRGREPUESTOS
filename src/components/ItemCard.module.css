@@ -1,0 +1,150 @@
+/* =============================================
+   FRGREPUESTOS — ITEM CARD PREMIUM
+   ============================================= */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  animation: rise .65s ease both;
+  animation-delay: var(--delay, 0ms);
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: color-mix(in srgb, var(--frg-red) 45%, var(--border));
+  box-shadow: 0 28px 60px rgba(5, 61, 90, .18);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--frg-red);
+  outline-offset: 3px;
+}
+
+/* Shimmer overlay on hover */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.07) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform .6s ease;
+  pointer-events: none;
+}
+
+.card:hover::after {
+  transform: translateX(100%);
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.07);
+}
+
+.number {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(5, 61, 90, .88);
+  color: white;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  z-index: 2;
+}
+
+/* Tag badge (used in Products.jsx) */
+.tag {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: var(--frg-red);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 5px;
+  z-index: 2;
+}
+
+.content {
+  padding: 1.25rem;
+}
+
+.content h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.06rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.content p {
+  min-height: 3.4rem;
+  margin: .55rem 0 1rem;
+  color: var(--muted);
+  font-size: .88rem;
+  line-height: 1.6;
+}
+
+.detail {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  color: var(--frg-red);
+  font-size: .82rem;
+  font-weight: 900;
+  transition: gap .2s ease;
+}
+
+.card:hover .detail {
+  gap: .55rem;
+}
+
+/* Red accent line on hover */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--frg-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s ease;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
