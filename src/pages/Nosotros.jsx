@@ -149,7 +149,7 @@ export default function Nosotros() {
             </a>
             <a
               id="btn-nosotros-facebook"
-              href="https://www.facebook.com/frgrepuestos"
+              href="https://www.facebook.com/profile.php?id=61562034547817"
               target="_blank"
               rel="noreferrer"
               className={styles.socialBtn}

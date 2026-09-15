@@ -153,7 +153,7 @@ export default function Home() {
               <a
                 id="btn-home-facebook"
                 className="inline-flex items-center gap-2 rounded-[9px] border border-[var(--border)] px-4 py-3 font-bold transition hover:border-[var(--frg-red)] hover:text-[var(--frg-red)]"
-                href="https://www.facebook.com/frgrepuestos"
+                href="https://www.facebook.com/profile.php?id=61562034547817"
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => console.log("click: home-facebook")}

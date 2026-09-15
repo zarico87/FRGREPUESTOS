@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750">
+  <rect width="1200" height="750" fill="#A2ABAA"/>
+  <rect x="70" y="70" width="1060" height="610" rx="28" fill="#053D5A"/>
+  <path d="M250 510l170-180 120 115 105-125 305 300H250z" fill="#787D7B"/>
+  <circle cx="440" cy="270" r="65" fill="#EE2E2E"/>
+  <text x="600" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="72" font-weight="900" fill="#F8F8F8">FRG</text>
+  <text x="600" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#F8F8F8">REPUESTOS</text>
+</svg>

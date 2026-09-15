@@ -33,7 +33,7 @@ Las imágenes se cargan desde `public/img/`. Ver `public/img/README.txt` para lo
 ## Redes configuradas
 - Instagram: @frgrepuestos
 - Facebook: FRGREPUESTOS
-- WhatsApp: +54 9 351 736837
+- WhatsApp: +54 9 351 7368376
 
 Si el número comercial cambia, actualizarlo en `src/components/Footer.jsx`, `src/pages/Home.jsx` y `src/pages/Contact.jsx`.
 

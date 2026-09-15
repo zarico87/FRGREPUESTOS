@@ -53,9 +53,9 @@ export default function Contact() {
 
             <div className="space-y-4">
               <div className={styles.infoLine}><FiMapPin /><span><strong>Dirección</strong><br />Mariano Fragueiro 653 · B° Ducasse<br />Córdoba Capital</span></div>
-              <a className={styles.infoLine} href="https://wa.me/549351736837" target="_blank" rel="noreferrer"><FaWhatsapp /><span><strong>WhatsApp</strong><br />Escribinos directamente</span></a>
+              <a className={styles.infoLine} href="https://wa.me/5493517368376" target="_blank" rel="noreferrer"><FaWhatsapp /><span><strong>WhatsApp</strong><br />Escribinos directamente</span></a>
               <a className={styles.infoLine} href="https://www.instagram.com/frgrepuestos/" target="_blank" rel="noreferrer"><FiInstagram /><span><strong>Instagram</strong><br />@frgrepuestos</span></a>
-              <a className={styles.infoLine} href="https://www.facebook.com/frgrepuestos" target="_blank" rel="noreferrer"><FiFacebook /><span><strong>Facebook</strong><br />FRGREPUESTOS</span></a>
+              <a className={styles.infoLine} href="https://www.facebook.com/profile.php?id=61562034547817" target="_blank" rel="noreferrer"><FiFacebook /><span><strong>Facebook</strong><br />FRGREPUESTOS</span></a>
             </div>
           </aside>
 

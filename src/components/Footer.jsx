@@ -17,7 +17,7 @@ const socials = [
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/frgrepuestos",
+    href: "https://www.facebook.com/profile.php?id=61562034547817",
     img: "/img/logos/logofacebook.png",
     icon: <FiFacebook />,
   },
