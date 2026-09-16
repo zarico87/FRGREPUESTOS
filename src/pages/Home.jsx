@@ -1,6 +1,5 @@
-import { FiArrowRight, FiFacebook, FiInstagram, FiMapPin, FiTool, FiShield, FiStar } from "react-icons/fi";
+import { FiArrowRight, FiFacebook, FiInstagram, FiMapPin } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import Button from "../components/Button";
 import Carousel from "../components/Carousel";
@@ -36,7 +35,7 @@ export default function Home() {
           }}
         />
 
-        <div className="container-frg relative grid min-h-[640px] items-center gap-12 py-20 lg:grid-cols-[1.1fr_.9fr]">
+        <div className="container-frg relative grid min-h-[640px] items-center gap-12 py-16 lg:grid-cols-[1fr_1fr]">
           {/* Left */}
           <div className="page-enter">
             <span className="inline-flex items-center gap-2 rounded-[8px] border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-xs font-black uppercase tracking-[.15em] text-[var(--frg-red)]">
@@ -68,41 +67,19 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right — visual card premium */}
-          <div className="relative mx-auto w-full max-w-[480px]">
-            <div
-              className="rounded-[18px] border border-[var(--border)] p-7 shadow-[var(--shadow)]"
-              style={{ background: "var(--surface)" }}
-            >
-              {/* Accent top */}
-              <div className="mb-5 h-1 w-14 rounded bg-[var(--frg-red)]" />
-              <h2 className="text-xl font-black text-[var(--text)] leading-snug mb-1">
-                ¿Por qué elegirnos?
-              </h2>
-              <p className="text-sm text-[var(--muted)] mb-5 leading-6">
-                Somos el punto de encuentro entre repuestos de calidad y un servicio técnico con décadas de experiencia.
-              </p>
-              <div className="space-y-4">
-                {[
-                  { icon: <FiStar />, title: "Variedad multimarca", text: "Todas las marcas del mercado." },
-                  { icon: <FiTool />, title: "+50 años de experiencia", text: "Junto a Instrumental Luciano, BV Las Heras." },
-                  { icon: <FiShield />, title: "Atención real", text: "Sin vueltas, con asesoramiento de verdad." },
-                ].map((item) => (
-                  <div key={item.title} className="flex items-start gap-3">
-                    <span className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[7px] bg-[color-mix(in_srgb,var(--frg-red)_10%,var(--surface-2))] text-[var(--frg-red)]">
-                      {item.icon}
-                    </span>
-                    <div>
-                      <p className="font-black text-sm text-[var(--text)]">{item.title}</p>
-                      <p className="text-xs text-[var(--muted)] mt-0.5">{item.text}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          {/* Right — Hero image */}
+          <div className="relative mx-auto w-full max-w-[600px] group">
+            <div className="relative overflow-hidden rounded-[20px] border border-[var(--border)] bg-[var(--surface)] p-2 shadow-2xl transition duration-500 hover:shadow-[0_20px_50px_rgba(238,46,46,0.18)]">
+              <img
+                src="/img/hero.png"
+                alt="FRGREPUESTOS - Repuestos y servicios automotrices"
+                className="w-full h-auto rounded-[14px] object-cover transition duration-500 group-hover:scale-[1.02]"
+                loading="eager"
+              />
             </div>
             {/* Floating badge */}
-            <div className="absolute -bottom-4 -left-4 rounded-[10px] border border-[var(--border)] bg-[var(--surface)] px-4 py-3 shadow-xl">
-              <strong className="block text-lg text-[var(--frg-red)]">Multimarca</strong>
+            <div className="absolute -bottom-4 -left-4 rounded-[12px] border border-[var(--border)] bg-[var(--surface)] px-4 py-3 shadow-xl backdrop-blur-md">
+              <strong className="block text-base font-black text-[var(--frg-red)]">Multimarca</strong>
               <span className="text-xs font-bold text-[var(--muted)]">Calidad + variedad + confianza</span>
             </div>
           </div>
