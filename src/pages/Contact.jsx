@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { FiCheckCircle, FiFacebook, FiInstagram, FiMapPin, FiSend } from "react-icons/fi";
+import { FiAlertCircle, FiCheckCircle, FiFacebook, FiInstagram, FiLoader, FiMapPin, FiSend } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+import { useForm, ValidationError } from "@formspree/react";
 import Seo from "../components/Seo";
 import styles from "./Contact.module.css";
 
@@ -9,7 +10,7 @@ const initialForm = { nombre: "", email: "", consulta: "" };
 export default function Contact() {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
-  const [sent, setSent] = useState(false);
+  const [state, handleFormspreeSubmit] = useForm("xyezgwpb");
 
   const validate = () => {
     const next = {};
@@ -22,15 +23,18 @@ export default function Contact() {
 
   const handleChange = (event) => {
     setForm((current) => ({ ...current, [event.target.name]: event.target.value }));
-    setSent(false);
   };
 
-  const handleSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     if (!validate()) return;
-    setSent(true);
-    window.alert("¡Gracias por completar el formulario! Ganaste un 15% OFF en mano de obra. Te contactaremos para continuar con tu consulta.");
+    await handleFormspreeSubmit(event);
+  };
+
+  const handleReset = () => {
     setForm(initialForm);
+    setErrors({});
+    window.location.reload();
   };
 
   return (
@@ -59,48 +63,118 @@ export default function Contact() {
             </div>
           </aside>
 
-          <form className={styles.form} onSubmit={handleSubmit} noValidate>
-            <div className={styles.formHeader}>
-              <span className={styles.formEyebrow}>
-                FRGREPUESTOS · ATENCIÓN PERSONALIZADA
-              </span>
+          <div className={styles.form}>
+            {state.succeeded ? (
+              <div className={styles.successCard}>
+                <div className={styles.successIconWrapper}>
+                  <FiCheckCircle className={styles.successCardIcon} />
+                </div>
+                <h3>¡Consulta enviada con éxito!</h3>
+                <p>
+                  Gracias por comunicarte con <strong>FRGREPUESTOS</strong>. Ya recibimos tus datos y nos pondremos en contacto a la brevedad para asesorarte.
+                </p>
 
-              <h2>Solicitá tu presupuesto</h2>
+                <div className={styles.promoReminder}>
+                  <span className={styles.promoBadge}>⚡ BENEFICIO 15% OFF ACTIVADO</span>
+                  <p>Tu descuento del 15% OFF en mano de obra quedó registrado para esta solicitud.</p>
+                </div>
 
-              <p>
-                Dejanos los datos de tu vehículo y contanos qué necesitás.
-                Nuestro equipo te orientará con la mejor opción.
-              </p>
-            </div>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="mt-6 inline-flex items-center gap-2 rounded-[9px] border border-[var(--border)] bg-[var(--surface-2)] px-5 py-2.5 text-sm font-bold text-[var(--text)] transition hover:border-[var(--frg-red)] hover:text-[var(--frg-red)]"
+                >
+                  Enviar otra consulta
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={onSubmit} action="https://formspree.io/f/xyezgwpb" method="POST" noValidate>
+                <div className={styles.formHeader}>
+                  <span className={styles.formEyebrow}>
+                    FRGREPUESTOS · ATENCIÓN PERSONALIZADA
+                  </span>
 
-            <div className="grid gap-5 sm:grid-cols-2">
-              <label className={styles.field}>
-                <span>Ingresá nombre</span>
-                <input name="nombre" value={form.nombre} onChange={handleChange} placeholder="Tu nombre" autoComplete="name" />
-                {errors.nombre && <small>{errors.nombre}</small>}
-              </label>
+                  <h2>Solicitá tu presupuesto</h2>
 
-              <label className={styles.field}>
-                <span>Mail</span>
-                <input name="email" value={form.email} onChange={handleChange} placeholder="tu@email.com" type="email" autoComplete="email" />
-                {errors.email && <small>{errors.email}</small>}
-              </label>
-            </div>
+                  <p>
+                    Dejanos los datos de tu vehículo y contanos qué necesitás.
+                    Nuestro equipo te orientará con la mejor opción.
+                  </p>
+                </div>
 
-            <label className={`${styles.field} mt-5`}>
-              <span>Dejanos tu consulta</span>
-              <textarea name="consulta" value={form.consulta} onChange={handleChange} placeholder="Contanos marca, modelo, año y qué necesitás..." rows="7" />
-              {errors.consulta && <small>{errors.consulta}</small>}
-            </label>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <label className={styles.field}>
+                    <span>Ingresá nombre</span>
+                    <input
+                      id="nombre"
+                      name="nombre"
+                      value={form.nombre}
+                      onChange={handleChange}
+                      placeholder="Tu nombre"
+                      autoComplete="name"
+                      required
+                    />
+                    {errors.nombre && <small>{errors.nombre}</small>}
+                    <ValidationError prefix="Nombre" field="nombre" errors={state.errors} />
+                  </label>
 
-            {sent && (
-              <div className={styles.success}><FiCheckCircle /> Formulario validado correctamente. ¡Recordá tu 15% OFF en mano de obra!</div>
+                  <label className={styles.field}>
+                    <span>Mail</span>
+                    <input
+                      id="email"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder="tu@email.com"
+                      type="email"
+                      autoComplete="email"
+                      required
+                    />
+                    {errors.email && <small>{errors.email}</small>}
+                    <ValidationError prefix="Email" field="email" errors={state.errors} />
+                  </label>
+                </div>
+
+                <label className={`${styles.field} mt-5`}>
+                  <span>Dejanos tu consulta</span>
+                  <textarea
+                    id="consulta"
+                    name="consulta"
+                    value={form.consulta}
+                    onChange={handleChange}
+                    placeholder="Contanos marca, modelo, año y qué necesitás..."
+                    rows="7"
+                    required
+                  />
+                  {errors.consulta && <small>{errors.consulta}</small>}
+                  <ValidationError prefix="Consulta" field="consulta" errors={state.errors} />
+                </label>
+
+                {state.errors && state.errors.getFormErrors && state.errors.getFormErrors().length > 0 && (
+                  <div className={styles.formErrorBox}>
+                    <FiAlertCircle />
+                    <span>Hubo un problema al enviar tu consulta. Por favor, verificá los datos o contactanos por WhatsApp.</span>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={state.submitting}
+                  className="mt-6 inline-flex items-center gap-2 rounded-[9px] bg-[var(--frg-red)] px-6 py-3 font-black text-white transition hover:-translate-y-0.5 hover:brightness-95 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {state.submitting ? (
+                    <>
+                      <FiLoader className="animate-spin" /> Enviando consulta...
+                    </>
+                  ) : (
+                    <>
+                      Enviar consulta <FiSend />
+                    </>
+                  )}
+                </button>
+              </form>
             )}
-
-            <button type="submit" className="mt-6 inline-flex items-center gap-2 rounded-[9px] bg-[var(--frg-red)] px-6 py-3 font-black text-white transition hover:-translate-y-0.5 hover:brightness-95">
-              Enviar consulta <FiSend />
-            </button>
-          </form>
+          </div>
         </div>
       </section>
 

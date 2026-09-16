@@ -39,9 +39,7 @@ Si el número comercial cambia, actualizarlo en `src/components/Footer.jsx`, `sr
 
 ## Formulario
 
-El formulario incluye validaciones en frontend y muestra un alert con el beneficio del 15% OFF. Actualmente no envía datos a un servidor/API.
-
-Para producción, conectar `handleSubmit` de `Contact.jsx` con un backend, Formspree, EmailJS o un endpoint propio.
+El formulario de contacto está conectado a **Formspree** (`https://formspree.io/f/xyezgwpb`) utilizando `@formspree/react`. Incluye validación de campos, estado de envío (loading), manejo de errores y tarjeta de confirmación con el beneficio del 15% OFF en mano de obra.
 
 ## SEO
 

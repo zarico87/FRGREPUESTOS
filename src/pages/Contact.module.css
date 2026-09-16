@@ -465,6 +465,95 @@ a.infoLine:hover {
 }
 
 /* =========================================================
+   CARD DE ÉXITO FORMSPREE
+   ========================================================= */
+
+.successCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  animation: successIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.successIconWrapper {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(38, 166, 25, 0.12);
+  border: 2px solid rgba(38, 166, 25, 0.35);
+  margin-bottom: 1.2rem;
+}
+
+.successCardIcon {
+  font-size: 2rem;
+  color: #26a619;
+}
+
+.successCard h3 {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  font-weight: 950;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.6rem;
+}
+
+.successCard p {
+  max-width: 480px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.promoReminder {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(238, 46, 46, 0.08), rgba(238, 46, 46, 0.02));
+  border: 1px solid rgba(238, 46, 46, 0.25);
+  max-width: 480px;
+  width: 100%;
+}
+
+.promoBadge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: var(--frg-red);
+  margin-bottom: 0.3rem;
+}
+
+.promoReminder p {
+  font-size: 0.82rem;
+  color: var(--text);
+  font-weight: 700;
+  margin: 0;
+}
+
+.formErrorBox {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: rgba(238, 46, 46, 0.08);
+  border: 1px solid rgba(238, 46, 46, 0.3);
+  color: var(--frg-red);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.formErrorBox svg {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+
+/* =========================================================
    ANIMACIÓN
    ========================================================= */
 
