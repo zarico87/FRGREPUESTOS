@@ -1,20 +1,27 @@
 import { useState } from "react";
 import { FiAlertCircle, FiCheckCircle, FiFacebook, FiInstagram, FiLoader, FiMapPin, FiSend } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
-import { useForm, ValidationError } from "@formspree/react";
+import emailjs from "@emailjs/browser";
 import Seo from "../components/Seo";
 import styles from "./Contact.module.css";
 
-const initialForm = { nombre: "", email: "", consulta: "" };
+const initialForm = { nombre: "", email: "", telefono: "", consulta: "" };
+
+const EMAILJS_SERVICE_ID = "service_j18q3sj";
+const EMAILJS_TEMPLATE_ID = "template_aot3bs9";
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "_CCHtNYhc1rbCWkr4";
 
 export default function Contact() {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
-  const [state, handleFormspreeSubmit] = useForm("xyezgwpb");
+  const [submitting, setSubmitting] = useState(false);
+  const [succeeded, setSucceeded] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const validate = () => {
     const next = {};
     if (!form.nombre.trim()) next.nombre = "Ingresá tu nombre.";
+    if (!form.telefono.trim()) next.telefono = "Ingresá tu teléfono.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = "Ingresá un mail válido.";
     if (form.consulta.trim().length < 10) next.consulta = "Contanos un poco más (mínimo 10 caracteres).";
     setErrors(next);
@@ -23,18 +30,54 @@ export default function Contact() {
 
   const handleChange = (event) => {
     setForm((current) => ({ ...current, [event.target.name]: event.target.value }));
+    if (errors[event.target.name]) {
+      setErrors((prev) => ({ ...prev, [event.target.name]: null }));
+    }
   };
 
   const onSubmit = async (event) => {
     event.preventDefault();
     if (!validate()) return;
-    await handleFormspreeSubmit(event);
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    const templateParams = {
+      nombre: form.nombre,
+      name: form.nombre,
+      from_name: form.nombre,
+      telefono: form.telefono,
+      phone: form.telefono,
+      email: form.email,
+      from_email: form.email,
+      reply_to: form.email,
+      consulta: form.consulta,
+      message: form.consulta,
+    };
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY || undefined
+      );
+      setSucceeded(true);
+    } catch (err) {
+      console.error("EmailJS submission error:", err);
+      setSubmitError(
+        "Hubo un problema al enviar tu consulta. Por favor, verificá los datos o contactanos directamente por WhatsApp."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleReset = () => {
     setForm(initialForm);
     setErrors({});
-    window.location.reload();
+    setSucceeded(false);
+    setSubmitError(null);
   };
 
   return (
@@ -64,7 +107,7 @@ export default function Contact() {
           </aside>
 
           <div className={styles.form}>
-            {state.succeeded ? (
+            {succeeded ? (
               <div className={styles.successCard}>
                 <div className={styles.successIconWrapper}>
                   <FiCheckCircle className={styles.successCardIcon} />
@@ -88,7 +131,7 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={onSubmit} action="https://formspree.io/f/xyezgwpb" method="POST" noValidate>
+              <form onSubmit={onSubmit} noValidate>
                 <div className={styles.formHeader}>
                   <span className={styles.formEyebrow}>
                     FRGREPUESTOS · ATENCIÓN PERSONALIZADA
@@ -102,7 +145,7 @@ export default function Contact() {
                   </p>
                 </div>
 
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-5 sm:grid-cols-3">
                   <label className={styles.field}>
                     <span>Ingresá nombre</span>
                     <input
@@ -115,7 +158,21 @@ export default function Contact() {
                       required
                     />
                     {errors.nombre && <small>{errors.nombre}</small>}
-                    <ValidationError prefix="Nombre" field="nombre" errors={state.errors} />
+                  </label>
+
+                  <label className={styles.field}>
+                    <span>Teléfono</span>
+                    <input
+                      id="telefono"
+                      name="telefono"
+                      type="tel"
+                      value={form.telefono}
+                      onChange={handleChange}
+                      placeholder="Ingresá el teléfono"
+                      autoComplete="tel"
+                      required
+                    />
+                    {errors.telefono && <small>{errors.telefono}</small>}
                   </label>
 
                   <label className={styles.field}>
@@ -131,7 +188,6 @@ export default function Contact() {
                       required
                     />
                     {errors.email && <small>{errors.email}</small>}
-                    <ValidationError prefix="Email" field="email" errors={state.errors} />
                   </label>
                 </div>
 
@@ -147,22 +203,21 @@ export default function Contact() {
                     required
                   />
                   {errors.consulta && <small>{errors.consulta}</small>}
-                  <ValidationError prefix="Consulta" field="consulta" errors={state.errors} />
                 </label>
 
-                {state.errors && state.errors.getFormErrors && state.errors.getFormErrors().length > 0 && (
+                {submitError && (
                   <div className={styles.formErrorBox}>
                     <FiAlertCircle />
-                    <span>Hubo un problema al enviar tu consulta. Por favor, verificá los datos o contactanos por WhatsApp.</span>
+                    <span>{submitError}</span>
                   </div>
                 )}
 
                 <button
                   type="submit"
-                  disabled={state.submitting}
+                  disabled={submitting}
                   className="mt-6 inline-flex items-center gap-2 rounded-[9px] bg-[var(--frg-red)] px-6 py-3 font-black text-white transition hover:-translate-y-0.5 hover:brightness-95 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {state.submitting ? (
+                  {submitting ? (
                     <>
                       <FiLoader className="animate-spin" /> Enviando consulta...
                     </>

@@ -39,7 +39,9 @@ Si el número comercial cambia, actualizarlo en `src/components/Footer.jsx`, `sr
 
 ## Formulario
 
-El formulario de contacto está conectado a **Formspree** (`https://formspree.io/f/xyezgwpb`) utilizando `@formspree/react`. Incluye validación de campos, estado de envío (loading), manejo de errores y tarjeta de confirmación con el beneficio del 15% OFF en mano de obra.
+El formulario de contacto está conectado a **EmailJS** (`service_j18q3sj` / `template_aot3bs9`) utilizando `@emailjs/browser`. Incluye validación de campos (nombre, teléfono, email, consulta), estado de envío (loading), manejo de errores y tarjeta de confirmación con el beneficio del 15% OFF en mano de obra.
+
+Para configurar la clave pública de EmailJS, definí `VITE_EMAILJS_PUBLIC_KEY` en tu archivo `.env` o en las variables de entorno de Vercel.
 
 ## SEO
 
