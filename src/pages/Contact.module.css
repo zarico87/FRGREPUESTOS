@@ -603,3 +603,101 @@ a.infoLine:hover {
     min-height: 140px;
   }
 }
+
+/* =========================================================
+   FORMAS DE PAGO
+   ========================================================= */
+
+.paymentSection {
+  position: relative;
+  z-index: 2;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.paymentTitle {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 0.9rem;
+}
+
+.paymentGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+
+.paymentItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.4rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.paymentItem:hover {
+  background: rgba(255, 255, 255, 0.13);
+  transform: translateY(-2px);
+}
+
+.paymentIcon {
+  font-size: 1.25rem;
+  color: #EE2E2E;
+  filter: drop-shadow(0 0 5px rgba(238, 46, 46, 0.4));
+}
+
+.paymentItem span {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.04em;
+}
+
+.goCuotas {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 9px;
+  background: rgba(238, 46, 46, 0.12);
+  border: 1px solid rgba(238, 46, 46, 0.3);
+}
+
+.goCuotasBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #EE2E2E;
+  white-space: nowrap;
+  background: rgba(238, 46, 46, 0.15);
+  border: 1px solid rgba(238, 46, 46, 0.35);
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+}
+
+.goCuotas > span:last-child {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.35;
+}
+
+@media (max-width: 400px) {
+  .paymentGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

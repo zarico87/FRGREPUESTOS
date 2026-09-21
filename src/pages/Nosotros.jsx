@@ -1,6 +1,7 @@
 import { FiMapPin, FiUsers, FiStar, FiTool, FiShield, FiPhone } from "react-icons/fi";
 import Seo from "../components/Seo";
 import styles from "./Nosotros.module.css";
+import FrgRedSection from "../components/FrgRedSection";
 
 const values = [
   {
@@ -126,6 +127,9 @@ export default function Nosotros() {
           </div>
         </div>
       </section>
+
+      {/* ── PROGRAMA FRGRED ── */}
+      <FrgRedSection />
 
       {/* ── REDES SOCIALES ── */}
       <section className={styles.social}>

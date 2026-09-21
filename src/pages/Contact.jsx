@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { FiAlertCircle, FiCheckCircle, FiFacebook, FiInstagram, FiLoader, FiMapPin, FiSend } from "react-icons/fi";
-import { FaWhatsapp } from "react-icons/fa";
+import { FiAlertCircle, FiCheckCircle, FiFacebook, FiInstagram, FiLoader, FiMapPin, FiSend, FiCreditCard } from "react-icons/fi";
+import { FaWhatsapp, FaMoneyBillWave, FaExchangeAlt } from "react-icons/fa";
+import { MdOutlinePayment } from "react-icons/md";
 import emailjs from "@emailjs/browser";
 import Seo from "../components/Seo";
 import styles from "./Contact.module.css";
@@ -103,6 +104,33 @@ export default function Contact() {
               <a className={styles.infoLine} href="https://wa.me/5493517368376" target="_blank" rel="noreferrer"><FaWhatsapp /><span><strong>WhatsApp</strong><br />Escribinos directamente</span></a>
               <a className={styles.infoLine} href="https://www.instagram.com/frgrepuestos/" target="_blank" rel="noreferrer"><FiInstagram /><span><strong>Instagram</strong><br />@frgrepuestos</span></a>
               <a className={styles.infoLine} href="https://www.facebook.com/profile.php?id=61562034547817" target="_blank" rel="noreferrer"><FiFacebook /><span><strong>Facebook</strong><br />FRGREPUESTOS</span></a>
+            </div>
+
+            {/* Formas de pago */}
+            <div className={styles.paymentSection}>
+              <span className={styles.paymentTitle}>Formas de pago</span>
+              <div className={styles.paymentGrid}>
+                <div className={styles.paymentItem}>
+                  <FaMoneyBillWave className={styles.paymentIcon} />
+                  <span>Efectivo</span>
+                </div>
+                <div className={styles.paymentItem}>
+                  <FaExchangeAlt className={styles.paymentIcon} />
+                  <span>Transferencia</span>
+                </div>
+                <div className={styles.paymentItem}>
+                  <FiCreditCard className={styles.paymentIcon} />
+                  <span>Débito</span>
+                </div>
+                <div className={styles.paymentItem}>
+                  <MdOutlinePayment className={styles.paymentIcon} />
+                  <span>Crédito</span>
+                </div>
+              </div>
+              <div className={styles.goCuotas}>
+                <span className={styles.goCuotasBadge}>🔄 Go Cuotas</span>
+                <span>Financiación en cuotas sin interés disponible</span>
+              </div>
             </div>
           </aside>
 

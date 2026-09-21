@@ -28,6 +28,7 @@ const navLinks = [
   { to: "/productos", label: "Productos" },
   { to: "/servicios", label: "Servicios" },
   { to: "/contacto",  label: "Contacto" },
+  { to: "/#frgred",   label: "🔥 Programa FRGRED", highlight: true },
 ];
 
 export default function Footer() {
@@ -74,7 +75,11 @@ export default function Footer() {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="text-sm font-semibold text-[var(--muted)] hover:text-[var(--frg-red)] transition-colors"
+                    className={`text-sm font-semibold transition-colors ${
+                      link.highlight
+                        ? "text-[var(--frg-red)] hover:brightness-110 font-black"
+                        : "text-[var(--muted)] hover:text-[var(--frg-red)]"
+                    }`}
                   >
                     {link.label}
                   </Link>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
 import styles from "./Header.module.css";
 
@@ -12,7 +12,24 @@ const links = [
 
 export default function Header({ dark, onToggleTheme }) {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const closeMenu = () => setOpen(false);
+
+  const handleFrgredClick = (e) => {
+    e.preventDefault();
+    closeMenu();
+    const scrollToSection = () => {
+      const el = document.getElementById("frgred");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    };
+    if (window.location.pathname !== "/") {
+      navigate("/");
+      // Espera que la página cargue y luego scrollea
+      setTimeout(scrollToSection, 350);
+    } else {
+      scrollToSection();
+    }
+  };
 
   return (
     <header className={styles.header}>
@@ -51,6 +68,14 @@ export default function Header({ dark, onToggleTheme }) {
               {link.label}
             </NavLink>
           ))}
+          {/* FRGRED — scroll especial */}
+          <a
+            href="/#frgred"
+            onClick={handleFrgredClick}
+            className={`${styles.navLink} ${styles.navLinkFrgred}`}
+          >
+            🔥 FRGRED
+          </a>
         </nav>
 
         {/* Controls */}

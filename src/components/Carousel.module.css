@@ -5,11 +5,14 @@
 .wrapper {
   width: 100%;
   overflow: hidden;
+  overflow-x: hidden;
   background: var(--surface);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   padding: 2rem 0;
   position: relative;
+  /* Necesario para que Safari/iOS respete overflow */
+  -webkit-overflow-scrolling: touch;
 }
 
 .wrapper::before,
@@ -48,6 +51,9 @@
   width: max-content;
   gap: 3rem;
   animation: scroll 28s linear infinite;
+  /* Asegura que la animación sea fluida en mobile */
+  will-change: transform;
+  -webkit-animation: scroll 28s linear infinite;
 }
 
 .track:hover {
@@ -81,16 +87,34 @@
   100% { transform: translateX(-50%); }
 }
 
+@-webkit-keyframes scroll {
+  0%   { -webkit-transform: translateX(0); }
+  100% { -webkit-transform: translateX(-50%); }
+}
+
 @media (max-width: 640px) {
+  .wrapper {
+    padding: 1.5rem 0;
+  }
   .logoItem {
-    width: 90px;
-    height: 50px;
+    width: 80px;
+    height: 46px;
   }
   .track {
-    gap: 2rem;
+    gap: 1.75rem;
   }
   .wrapper::before,
   .wrapper::after {
-    width: 60px;
+    width: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logoItem {
+    width: 70px;
+    height: 42px;
+  }
+  .track {
+    gap: 1.25rem;
   }
 }

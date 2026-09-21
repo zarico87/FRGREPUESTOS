@@ -3,6 +3,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import Seo from "../components/Seo";
 import Button from "../components/Button";
 import Carousel from "../components/Carousel";
+import FrgRedSection from "../components/FrgRedSection";
 
 export default function Home() {
   return (
@@ -141,6 +142,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── PROGRAMA FRGRED ── */}
+      <FrgRedSection />
 
       {/* ── BENEFICIOS ── */}
       <section className="border-y border-[var(--border)] bg-[var(--surface-2)]">

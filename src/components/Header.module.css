@@ -80,6 +80,26 @@
   background: color-mix(in srgb, var(--frg-red) 8%, transparent);
 }
 
+/* FRGRED special highlight link */
+.navLinkFrgred {
+  color: var(--frg-red) !important;
+  background: rgba(238, 46, 46, 0.1) !important;
+  border: 1.5px solid rgba(238, 46, 46, 0.3);
+  font-weight: 900 !important;
+  animation: frgredPulse 3s ease-in-out infinite;
+}
+
+.navLinkFrgred:hover {
+  background: rgba(238, 46, 46, 0.18) !important;
+  border-color: var(--frg-red);
+  transform: translateY(-1px);
+}
+
+@keyframes frgredPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(238, 46, 46, 0); }
+  50% { box-shadow: 0 0 0 5px rgba(238, 46, 46, 0.08); }
+}
+
 /* ── Icon buttons ── */
 .iconButton {
   width: 40px;
