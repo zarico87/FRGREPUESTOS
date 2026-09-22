@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiAlertCircle, FiCheckCircle, FiFacebook, FiInstagram, FiLoader, FiMapPin, FiSend, FiCreditCard } from "react-icons/fi";
+import { FiAlertCircle, FiCheckCircle, FiFacebook, FiInstagram, FiLoader, FiMapPin, FiSend, FiCreditCard, FiExternalLink } from "react-icons/fi";
 import { FaWhatsapp, FaMoneyBillWave, FaExchangeAlt } from "react-icons/fa";
 import { MdOutlinePayment } from "react-icons/md";
 import emailjs from "@emailjs/browser";
@@ -127,10 +127,29 @@ export default function Contact() {
                   <span>Crédito</span>
                 </div>
               </div>
-              <div className={styles.goCuotas}>
-                <span className={styles.goCuotasBadge}>🔄 Go Cuotas</span>
-                <span>Financiación en cuotas sin interés disponible</span>
-              </div>
+              <a
+                href="https://www.gocuotas.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.goCuotas}
+                title="Consultar términos y condiciones en Go Cuotas (sitio oficial)"
+              >
+                <div className={styles.goCuotasBrand}>
+                  <img
+                    src="/img/logos/Logogotcuotas.png"
+                    alt="GO Cuotas"
+                    className={styles.goCuotasLogo}
+                  />
+                </div>
+                <div className={styles.goCuotasContent}>
+                  <span className={styles.goCuotasText}>
+                    Financiación en cuotas con débito disponible
+                  </span>
+                  <span className={styles.goCuotasAction}>
+                    Ver términos y condiciones <FiExternalLink className={styles.goCuotasLinkIcon} />
+                  </span>
+                </div>
+              </a>
             </div>
           </aside>
 

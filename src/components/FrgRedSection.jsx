@@ -148,7 +148,7 @@ export default function FrgRedSection({ className = "" }) {
           <div className={styles.trackerContainer}>
             <div className={styles.trackerTop}>
               <div className={styles.trackerTitle}>
-                <FiUsers className="text-[var(--frg-red)] text-lg" />
+                <FiUsers className={styles.trackerTitleIcon} />
                 <span>Tu camino hacia el descuento (Meta: 5 referidos concretados)</span>
               </div>
               <span className={styles.trackerBadge}>⚡ Activación Automática</span>
@@ -158,12 +158,18 @@ export default function FrgRedSection({ className = "" }) {
               {[1, 2, 3, 4].map((num) => (
                 <div key={num} className={`${styles.slotItem} ${styles.slotItemActive}`}>
                   <span className={styles.slotIcon}>👤</span>
-                  <span className={styles.slotText}>Referido #{num}</span>
+                  <span className={styles.slotText}>
+                    <span className={styles.textFull}>Referido #{num}</span>
+                    <span className={styles.textCompact}>Ref #{num}</span>
+                  </span>
                 </div>
               ))}
               <div className={`${styles.slotItem} ${styles.slotItemReward}`}>
                 <span className={styles.slotIcon}>🎁</span>
-                <span className={styles.slotText}>¡PREMIO ACTIVADO!</span>
+                <span className={styles.slotText}>
+                  <span className={styles.textFull}>¡PREMIO ACTIVADO!</span>
+                  <span className={styles.textCompact}>¡PREMIO!</span>
+                </span>
               </div>
             </div>
           </div>

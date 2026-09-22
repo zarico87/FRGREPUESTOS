@@ -5,6 +5,13 @@
   background: var(--surface);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .sectionWrapper {
+    padding: 3.5rem 0;
+  }
 }
 
 /* Background atmospheric glows */
@@ -63,6 +70,15 @@
   color: var(--frg-red);
   margin-bottom: 1.25rem;
   box-shadow: 0 0 20px rgba(238, 46, 46, 0.12);
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .badgeContainer {
+    font-size: 0.72rem;
+    padding: 0.4rem 0.8rem;
+    white-space: normal;
+  }
 }
 
 .badgeDot {
@@ -95,12 +111,13 @@
 }
 
 .mainTitle {
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(1.7rem, 4.5vw, 3.25rem);
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: -0.035em;
   color: var(--text-strong);
   margin-bottom: 1.25rem;
+  word-break: break-word;
 }
 
 .highlightText {
@@ -275,11 +292,27 @@
   border: 1px solid var(--border);
   border-radius: 24px;
   padding: 2.5rem 1.75rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
   .howItWorksSection {
     padding: 3rem 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .howItWorksSection {
+    margin: 2rem 0;
+    padding: 1.35rem 0.85rem;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .howItWorksSection {
+    padding: 1.15rem 0.65rem;
   }
 }
 
@@ -394,6 +427,8 @@
   border-radius: 16px;
   padding: 1.5rem;
   margin-top: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .trackerTop {
@@ -412,6 +447,13 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
+}
+
+.trackerTitleIcon {
+  color: var(--frg-red);
+  font-size: 1.15rem;
+  flex-shrink: 0;
 }
 
 .trackerBadge {
@@ -422,32 +464,32 @@
   padding: 0.3rem 0.75rem;
   border-radius: 999px;
   border: 1px solid rgba(238, 46, 46, 0.2);
+  white-space: nowrap;
 }
 
 .slotsGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.75rem;
-}
-
-@media (max-width: 500px) {
-  .slotsGrid {
-    gap: 0.4rem;
-  }
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .slotItem {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 0.5rem;
+  padding: 0.85rem 0.35rem;
   border-radius: 12px;
   background: var(--surface-2);
   border: 1px dashed var(--border-strong);
   text-align: center;
   transition: all 0.25s ease;
   position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .slotItemActive {
@@ -464,12 +506,23 @@
 .slotIcon {
   font-size: 1.35rem;
   margin-bottom: 0.35rem;
+  flex-shrink: 0;
 }
 
 .slotText {
   font-size: 0.75rem;
   font-weight: 800;
   color: var(--muted);
+  max-width: 100%;
+  line-height: 1.25;
+}
+
+.textFull {
+  display: inline;
+}
+
+.textCompact {
+  display: none;
 }
 
 .slotItemActive .slotText {
@@ -478,6 +531,81 @@
 
 .slotItemReward .slotText {
   color: var(--text-strong);
+}
+
+@media (max-width: 640px) {
+  .trackerContainer {
+    padding: 1rem 0.75rem;
+    border-radius: 14px;
+    margin-top: 1.25rem;
+  }
+
+  .trackerTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .trackerTitle {
+    font-size: 0.85rem;
+    line-height: 1.35;
+  }
+
+  .trackerBadge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .slotsGrid {
+    gap: 0.35rem;
+  }
+
+  .slotItem {
+    padding: 0.55rem 0.2rem;
+    border-radius: 9px;
+  }
+
+  .slotIcon {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .textFull {
+    display: none;
+  }
+
+  .textCompact {
+    display: inline;
+    font-size: 0.67rem;
+    font-weight: 900;
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+  }
+}
+
+@media (max-width: 380px) {
+  .trackerContainer {
+    padding: 0.85rem 0.5rem;
+  }
+
+  .slotsGrid {
+    gap: 0.25rem;
+  }
+
+  .slotItem {
+    padding: 0.45rem 0.15rem;
+    border-radius: 8px;
+  }
+
+  .slotIcon {
+    font-size: 0.95rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .textCompact {
+    font-size: 0.62rem;
+  }
 }
 
 /* ─── BENEFITS SHOWCASE (TUS BENEFICIOS) ─── */
@@ -592,12 +720,32 @@
   font-weight: 600;
   color: var(--text);
   margin-top: 1.25rem;
+  box-sizing: border-box;
 }
 
 .conditionIcon {
   color: var(--frg-red);
   font-size: 1.1rem;
   flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .benefitCard {
+    padding: 1.5rem 1.15rem;
+    border-radius: 16px;
+  }
+  .discountValue {
+    font-size: 2.5rem;
+  }
+  .benefitHeading {
+    font-size: 1.2rem;
+  }
+  .benefitConditionBox {
+    font-size: 0.82rem;
+    padding: 0.65rem 0.75rem;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
 }
 
 /* Important notice callout */
@@ -610,6 +758,7 @@
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
+  box-sizing: border-box;
 }
 
 .calloutIcon {
@@ -623,6 +772,22 @@
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--text);
+}
+
+@media (max-width: 640px) {
+  .importantCallout {
+    padding: 1rem 0.85rem;
+    gap: 0.75rem;
+    border-radius: 14px;
+    margin-top: 1.25rem;
+  }
+  .calloutIcon {
+    font-size: 1.35rem;
+  }
+  .calloutText {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
 }
 
 .calloutText strong {
@@ -694,11 +859,13 @@
   align-items: center;
   justify-content: center;
   gap: 1.25rem;
+  width: 100%;
 }
 
 @media (min-width: 640px) {
   .ctaActions {
     flex-direction: row;
+    width: auto;
   }
 }
 
@@ -722,6 +889,7 @@
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.3);
   animation: pulseGlow 2.5s infinite;
+  box-sizing: border-box;
 }
 
 @keyframes pulseGlow {
@@ -757,12 +925,53 @@
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.25s ease;
+  box-sizing: border-box;
 }
 
 .ctaSecondaryButton:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
   color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .ctaBox {
+    padding: 2rem 1.25rem;
+    margin-top: 2.5rem;
+    border-radius: 18px;
+  }
+  .ctaTitle {
+    font-size: 1.6rem;
+  }
+  .ctaParagraph {
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+  }
+  .ctaActions {
+    width: 100%;
+    gap: 0.85rem;
+  }
+  .ctaMainButton {
+    width: 100%;
+    padding: 0.95rem 1.25rem;
+    font-size: 1rem;
+  }
+  .ctaSecondaryButton {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.92rem;
+  }
+  .faqContainer {
+    margin-top: 2.5rem;
+  }
+  .faqQuestion {
+    padding: 1rem 1.15rem;
+    font-size: 0.92rem;
+  }
+  .faqAnswer {
+    padding: 0 1.15rem 1.15rem 1.15rem;
+    font-size: 0.88rem;
+  }
 }
 
 /* ─── ACCORDION / FAQ INTERACTIVE ─── */

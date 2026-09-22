@@ -666,34 +666,92 @@ a.infoLine:hover {
 .goCuotas {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  margin-top: 0.75rem;
-  padding: 0.65rem 0.85rem;
-  border-radius: 9px;
-  background: rgba(238, 46, 46, 0.12);
-  border: 1px solid rgba(238, 46, 46, 0.3);
+  gap: 0.85rem;
+  margin-top: 0.85rem;
+  padding: 0.75rem 0.95rem;
+  border-radius: 10px;
+  background: rgba(238, 46, 46, 0.1);
+  border: 1px solid rgba(238, 46, 46, 0.32);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
 }
 
-.goCuotasBadge {
+.goCuotas:hover {
+  background: rgba(238, 46, 46, 0.18);
+  border-color: rgba(238, 46, 46, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.goCuotasBrand {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  font-size: 0.7rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  color: #EE2E2E;
-  white-space: nowrap;
-  background: rgba(238, 46, 46, 0.15);
-  border: 1px solid rgba(238, 46, 46, 0.35);
-  border-radius: 6px;
-  padding: 0.2rem 0.5rem;
+  justify-content: center;
+  padding: 0.3rem 0.55rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 7px;
+  flex-shrink: 0;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.goCuotas > span:last-child {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.75);
+.goCuotas:hover .goCuotasBrand {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(238, 46, 46, 0.4);
+}
+
+.goCuotasLogo {
+  height: 20px;
+  width: auto;
+  max-width: 65px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+}
+
+.goCuotasContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.goCuotasText {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #ffffff;
   line-height: 1.35;
+}
+
+.goCuotasAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #ff6b6b;
+  transition: color 0.2s ease;
+}
+
+.goCuotas:hover .goCuotasAction {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.goCuotasLinkIcon {
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .goCuotas {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.75rem;
+  }
 }
 
 @media (max-width: 400px) {
